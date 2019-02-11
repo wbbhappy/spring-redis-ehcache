@@ -27,9 +27,9 @@ public class RedisUtil {
      * @return
      */
     public Jedis getResource(){
-        Jedis jedis =null;
+        Jedis jedis = null;
         try {
-            jedis =jedisPool.getResource();
+            jedis = jedisPool.getResource();
         } catch (Exception e) {
             LOG.info("can't  get  the redis resource");
         }
@@ -60,7 +60,7 @@ public class RedisUtil {
      * @param jedis
      */
     public void brokenResource(Jedis jedis){
-        if (jedis!=null) {
+        if (jedis != null) {
             try {
                 jedisPool.returnBrokenResource(jedis);
             } catch (Exception e) {

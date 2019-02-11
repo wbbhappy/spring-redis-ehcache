@@ -14,7 +14,7 @@ import redis.clients.jedis.exceptions.JedisException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
+@Service("redisCacheStorage")
 public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
     //日志记录
     private Logger log = LoggerFactory.getLogger(RedisCacheStorageImpl.class);
@@ -28,11 +28,12 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Cacheable("redisCacheStorage")
     public boolean set(String key, V value) {
         return set(key,value,EXPRIE_TIME);
     }
 
-    @Cacheable("redisCacheStorage")
+    @Cacheable("redisCacheStorage2")
     public boolean set(String key, V value, int exp) {
         Jedis jedis = null;
         if(StringUtils.isEmpty(key)){
@@ -57,7 +58,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         }
     }
 
-    @Cacheable("redisCacheStorage")
+    @Cacheable("redisCacheStorage3")
     public V get(String key,Object object) {
         Jedis jedis = null;
         V v = null;
