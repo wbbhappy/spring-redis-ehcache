@@ -19,9 +19,22 @@ public class RedisInterfaceTest {
     ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext3.xml");
     IUserDao userDao = ac.getBean(IUserDao.class);
 
+    /**
+     * 设置userDao
+     * @param userDao the userDao to set
+     */
+    public void setUserDao(IUserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Test
-    public void test() {
+    public void findAll() {
         System.out.println(userDao.findAll());
+    }
+
+    @Test
+    public void insert() {
+        System.out.println(userDao.insert());
     }
 
     /**
@@ -109,13 +122,6 @@ public class RedisInterfaceTest {
         User user = userDao.get(id);
         Assert.assertNotNull(user);
         Assert.assertEquals(user.getName(), "java2000_wl");
-    }
-    /**
-     * 设置userDao
-     * @param userDao the userDao to set
-     */
-    public void setUserDao(IUserDao userDao) {
-        this.userDao = userDao;
     }
 }
 

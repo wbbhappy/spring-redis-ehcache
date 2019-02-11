@@ -3,6 +3,8 @@ package com.web.dao.impl;
 import com.web.dao.AbstractBaseRedisDao;
 import com.web.dao.IUserDao;
 import com.web.entity.User;
+import com.web.util.RedisUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -12,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IUserDaoImpl extends AbstractBaseRedisDao<String, User> implements IUserDao {
+
+    @Autowired
+    RedisUtils redisUtil;
 
     public List<User> findAll() {
         List<User> list = new ArrayList<User>();
@@ -24,6 +29,15 @@ public class IUserDaoImpl extends AbstractBaseRedisDao<String, User> implements 
         }
         return list;
     }
+
+    public String insert() {
+        String key = "user";
+        String value = "tom";
+        redisUtil.set(key, value);
+        String result = redisUtil.get(key);
+        return result;
+    }
+
     /**
      * 新增
      * @param user
