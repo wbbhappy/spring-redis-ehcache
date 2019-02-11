@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="ehcache" />
+        <module name="spring-redis-ehcache" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ehcache" target="1.7" />
+      <module name="spring-redis-ehcache" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
