@@ -1,7 +1,7 @@
 package com.web.service.impl;
 
 import com.web.service.RedisCacheStorage;
-import com.web.util.RedisUtil;
+import com.web.util.JedisUtil;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
      * 获取Jedis相关操作
      */
     @Autowired
-    private RedisUtil redisUtil;
+    private JedisUtil redisUtil;
 
     @Cacheable("redisCacheStorage")
     public boolean set(String key, V value) {

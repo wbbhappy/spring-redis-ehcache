@@ -10,6 +10,13 @@ public class RedisUtils {
     @Autowired
     RedisTemplate<String, String> redisTemplate;
 
+    /*
+	 * 如果使用注解注入RedisTemplate对象，则不需要该setter方法
+	 */
+    public void setRedisTemplate(RedisTemplate<String, String> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
     public String get(String key) {
         if (StringUtils.isEmpty(key)) {
             return null;

@@ -1,21 +1,30 @@
 package com.test;
 
-import com.web.entity.User;
-import com.web.util.SerializeUtils;
+import com.web.util.RedisUtils;
 import org.junit.Test;
-import redis.clients.jedis.Jedis;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({"classpath:spring-redis.xml"})
 public class RedisTest{
-    private static Jedis jedis;
-    static{
-        //访问本地redis
-        jedis = new Jedis("127.0.0.1",6379);
-    }
+    @Autowired(required=false)
+    private RedisUtils redisUtils;
+
+    /*@Autowired(required=false)
+    private RedisUtil redisUtil;*/
+
     @Test
-    public void serialize(){
-        User user = new User("baby", "宝宝", "xioabao");
-        jedis.set(user.getId().getBytes(), SerializeUtils.serialize(user));
-        byte[] bytes = jedis.get(user.getId().getBytes());
-        System.out.println((User)SerializeUtils.deSerialize(bytes));
+    public void testSet() {
+        this.redisUtils.set("baby", "baby");
+        System.out.println("redis插入数据成功！");
+    }
+
+    @Test
+    public void testGet() {
+        this.redisUtils.get("baby");
+        System.out.println("redis读取数据成功！");
     }
 }

@@ -26,8 +26,16 @@
     <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:host-name="127.0.0.1" p:port="6379" p:pool-config-ref="jedisPool"  >
     </bean>
+    <!-- redis 序列化策略 ，通常情况下key值采用String序列化策略， -->
+    <!-- 如果不指定序列化策略，StringRedisTemplate的key和value都将采用String序列化策略； -->
+    <!-- 但是RedisTemplate的key和value都将采用JDK序列化 这样就会出现采用不同template保存的数据不能用同一个template删除的问题 -->
+    <bean id="stringRedisSerializer"  class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+    <!-- 配置RedisTemplate -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="redisConnectionFactory" />
+        <property name="keySerializer" ref="stringRedisSerializer" />
+        <property name="hashKeySerializer" ref="stringRedisSerializer" />
+        <property name="valueSerializer" ref="stringRedisSerializer"/>
     </bean>
     <!-- 配置自己的Redis缓存管理器 -->
     <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
@@ -40,4 +48,8 @@
     </bean>
 
     <cache:annotation-driven cache-manager="redisCacheManager"/>
+    <!--redis工具类 （也可以通过注解的方式注入） -->
+    <bean id="redisUtil" class="com.web.util.JedisUtil">
+        <!--<property name="redisTemplate" ref="redisTemplate" />-->
+    </bean>
 </beans>
