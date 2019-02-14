@@ -2,21 +2,20 @@ package com.test;
 
 import com.web.service.RedisCacheStorage;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:applicationContext2.xml","classpath*:spring-redis2.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath*:spring-redis2.xml"})
 public class RedisCacheStorageTest {
     @Autowired
     //private RedisCacheStorage<String,Users> redisCacheStorage;
     private RedisCacheStorage<String,String> redisCacheStorage;
 
     //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext2.xml,spring-redis2.xml");
-    //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
-    //RedisCacheStorage redisCacheStorage = ac.getBean(RedisCacheStorage.class);
+    ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
+    //RedisCacheStorageImpl redisCacheStorage = ac.getBean(RedisCacheStorageImpl.class);
 
     @Test
     public void testSetGet() throws Exception {
@@ -29,6 +28,6 @@ public class RedisCacheStorageTest {
         Users user2 = redisCacheStorage.get("Akey7",new Users());
         System.out.print("=======" + user2.getName() + "=====" + user2.getPassword());*/
 
-        redisCacheStorage.set("Akey7","wbbhappy");
+        redisCacheStorage.set("Akey7","wbbhappy",3);
     }
 }

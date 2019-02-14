@@ -3,11 +3,11 @@ package com.web.dao.impl;
 import com.web.dao.UserDao;
 import com.web.entity.User;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+//@Repository
 public class UserDaoImpl implements UserDao{
 	@Cacheable("users")
 	public User get(String keyId) {

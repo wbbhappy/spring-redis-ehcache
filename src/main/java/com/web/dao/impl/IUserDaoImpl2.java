@@ -4,13 +4,16 @@ import com.web.dao.IUserDao2;
 import com.web.entity.User;
 import com.web.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class IUserDaoImpl2 implements IUserDao2 {
 
     @Autowired
-    RedisUtils redisUtil;
+    RedisUtils redisUtils;
 
     public List<User> findAll() {
         List<User> list = new ArrayList<User>();
@@ -24,11 +27,11 @@ public class IUserDaoImpl2 implements IUserDao2 {
         return list;
     }
 
-    public String insert() {
+    public void insert() {
         String key = "user";
         String value = "tom";
-        redisUtil.set(key, value);
-        String result = redisUtil.get(key);
-        return result;
+        this.redisUtils.set("user", "tom");
+        /*String result = this.redisUtils.get("user");
+        return result;*/
     }
 }

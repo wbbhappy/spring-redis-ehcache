@@ -7,14 +7,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisException;
+
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("redisCacheStorage")
+//@Service
+@Repository
 public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
     //日志记录
     private Logger log = LoggerFactory.getLogger(RedisCacheStorageImpl.class);
@@ -28,12 +29,10 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
     @Autowired
     private JedisUtil redisUtil;
 
-    @Cacheable("redisCacheStorage")
     public boolean set(String key, V value) {
         return set(key,value,EXPRIE_TIME);
     }
 
-    @Cacheable("redisCacheStorage2")
     public boolean set(String key, V value, int exp) {
         Jedis jedis = null;
         if(StringUtils.isEmpty(key)){
@@ -58,7 +57,6 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         }
     }
 
-    @Cacheable("redisCacheStorage3")
     public V get(String key,Object object) {
         Jedis jedis = null;
         V v = null;

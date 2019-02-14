@@ -1,6 +1,6 @@
 package com.test;
 
-import com.web.dao.IUserDao;
+import com.web.dao.impl.IUserDaoImpl;
 import com.web.entity.User;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -17,26 +17,7 @@ import java.util.List;
 public class RedisInterfaceTest {
 
     ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext3.xml");
-    IUserDao userDao = ac.getBean(IUserDao.class);
-
-    /**
-     * 设置userDao
-     * @param userDao the userDao to set
-     */
-    public void setUserDao(IUserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    @Test
-    public void findAll() {
-        System.out.println(userDao.findAll());
-    }
-
-    @Test
-    public void insert() {
-        System.out.println(userDao.insert());
-    }
-
+    IUserDaoImpl userDao = ac.getBean(IUserDaoImpl.class);
     /**
      * 新增
      */
@@ -54,7 +35,7 @@ public class RedisInterfaceTest {
     @Test
     public void testAddUsers1() {
         List<User> list = new ArrayList<User>();
-        for (int i = 10; i < 50000; i++) {
+        for (int i = 1; i < 5; i++) {
             User user = new User();
             user.setId("user" + i);
             user.setName("java2000_wl" + i);
@@ -72,7 +53,7 @@ public class RedisInterfaceTest {
     @Test
     public void testAddUsers2() {
         List<User> list = new ArrayList<User>();
-        for (int i = 10; i < 1500000; i++) {
+        for (int i = 1; i < 5; i++) {
             User user = new User();
             user.setId("user" + i);
             user.setName("java2000_wl" + i);
@@ -108,7 +89,7 @@ public class RedisInterfaceTest {
     @Test
     public void testDeletes() {
         List<String> list = new ArrayList<String>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 5; i++) {
             list.add("user" + i);
         }
         userDao.delete(list);

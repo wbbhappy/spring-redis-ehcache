@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface IUserDao2 {
     List<User> findAll();
-    String insert();
+    void insert();
 }

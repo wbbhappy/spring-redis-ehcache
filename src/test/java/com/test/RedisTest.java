@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring-redis.xml"})
+@ContextConfiguration({"classpath:spring-redis3.xml"})
 public class RedisTest{
     @Autowired(required=false)
     private RedisUtils redisUtils;

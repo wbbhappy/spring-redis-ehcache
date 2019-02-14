@@ -4,8 +4,6 @@ import com.web.entity.User;
 import java.util.List;
 
 public interface IUserDao {
-    List<User> findAll();
-    String insert();
     /**
      * 新增
      * @param user
