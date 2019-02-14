@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ef18121-b15e-4543-8940-4d3598a0b6f4" name="Default" comment="redis修改">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/web/util/JedisUtil.java" />
+    <list default="true" id="1ef18121-b15e-4543-8940-4d3598a0b6f4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring-redis-ehcache.iml" afterPath="$PROJECT_DIR$/spring-redis-ehcache.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/web/service/impl/RedisCacheStorageImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/web/service/impl/RedisCacheStorageImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/web/util/RedisUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/web/util/RedisUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/web/util/RedisUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/web/util/RedisUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-redis.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-redis.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-redis2.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-redis2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/test/RedisCacheStorageTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/test/RedisCacheStorageTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/test/RedisTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/test/RedisTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring-redis.xml" afterPath="$PROJECT_DIR$/target/classes/spring-redis.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/com/test/RedisListJava.java" afterPath="$PROJECT_DIR$/src/test/java/com/test/JedisListTest.java" />
     </list>
     <ignored path="ehcache.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -961,7 +950,7 @@
       <workItem from="1549941425808" duration="614000" />
       <workItem from="1549954623874" duration="46000" />
       <workItem from="1550042736020" duration="2602000" />
-      <workItem from="1550124622714" duration="4856000" />
+      <workItem from="1550124622714" duration="4882000" />
     </task>
     <task id="LOCAL-00001" summary="redis修改">
       <created>1549856468248</created>
@@ -1005,7 +994,14 @@
       <option name="project" value="LOCAL" />
       <updated>1549879835856</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="redis修改">
+      <created>1550129488575</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1550129488575</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1041,7 +1037,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39933000" />
+    <option name="totallyTimeSpent" value="39959000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
