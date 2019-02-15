@@ -11,20 +11,20 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"classpath:spring-redis3.xml"})
 public class RedisTest{
     @Autowired(required=false)
-    private RedisUtil redisUtils;
+    private RedisUtil redisUtil;
 
     /*@Autowired(required=false)
-    private RedisUtil redisUtil;*/
+    private RedisUtils redisUtils;*/
 
     @Test
     public void testSet() {
-        this.redisUtils.set("baby", "baby");
+        this.redisUtil.set("baby", "baby");
         System.out.println("redis插入数据成功！");
     }
 
     @Test
     public void testGet() {
-        this.redisUtils.get("baby");
+        this.redisUtil.get("baby");
         System.out.println("redis读取数据成功！");
     }
 }
