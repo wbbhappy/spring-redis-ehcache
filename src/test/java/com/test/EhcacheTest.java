@@ -14,6 +14,9 @@ public class EhcacheTest {
 		UserDao userDao = ac.getBean(UserDao.class);
 		System.out.println("userDao" + userDao);
 
+		/**
+		 * @Cacheable("users")Ehcache的注解，redis缓存无法调用
+		 */
 		System.out.println("第1次");
 		long st = System.currentTimeMillis();
 		System.out.println(userDao.get("1"));
@@ -50,10 +53,13 @@ public class EhcacheTest {
 		long end5 = System.currentTimeMillis();
 		System.out.println("时间" + (end5-st5));
 
-		/*System.out.println("第7次");
+		/**
+		 * @Cacheable("userCache")redis的注解，Ehcache缓存无法调用
+		 */
+		System.out.println("第7次");
 		long st7 = System.currentTimeMillis();
 		System.out.println(userDao.findAll());
 		long end7 = System.currentTimeMillis();
-		System.out.println("时间" + (end7-st7));*/
+		System.out.println("时间" + (end7-st7));
 	}
 }

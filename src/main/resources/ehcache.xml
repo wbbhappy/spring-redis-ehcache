@@ -29,6 +29,7 @@
 		diskExpiryThreadIntervalSeconds="120"
 		memoryStoreEvictionPolicy="LRU"
 	/>
+	<!-- 配置自己的Ehcache缓存管理器，注解为@Cacheable("users") -->
 	<cache name="users"
 		maxElementsInMemory="10000"
 		eternal="false"

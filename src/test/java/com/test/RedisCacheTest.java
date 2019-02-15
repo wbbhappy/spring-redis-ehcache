@@ -50,10 +50,10 @@ public class RedisCacheTest {
 		long end5 = System.currentTimeMillis();
 		System.out.println("时间" + (end5-st5));
 		
-		/*System.out.println("第7次");
+		System.out.println("第7次");
 		long st6 = System.currentTimeMillis();
 		System.out.println(userDao.get("01"));
 		long end6 = System.currentTimeMillis();
-		System.out.println("时间" + (end6-st6));*/
+		System.out.println("时间" + (end6-st6));
 	}
 }

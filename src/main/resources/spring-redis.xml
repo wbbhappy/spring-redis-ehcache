@@ -33,7 +33,7 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="redisConnectionFactory" />
 	</bean>
-	<!-- 配置自己的Redis缓存管理器 -->
+	<!-- 配置自己的Redis缓存管理器，注解为@Cacheable("userCache") -->
 	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
 		<constructor-arg name="template" ref="redisTemplate" />
 		<constructor-arg name="cacheNames">

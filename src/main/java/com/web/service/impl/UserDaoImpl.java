@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-	@Cacheable("users")
+	@Cacheable("userCache")
 	public User get(String keyId) {
 		User user = new User();
 		user.setId("1");
