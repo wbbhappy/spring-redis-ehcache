@@ -14,8 +14,15 @@ public class JedisListTest {
     }
     @Test
     public void serialize(){
-        User user = new User("baby", "宝宝", "xioabao");
+        User user = new User("jedisSerialize", "宝宝", "xiaobao");
         jedis.set(user.getId().getBytes(), SerializeUtils.serialize(user));
+        byte[] bytes = jedis.get(user.getId().getBytes());
+        System.out.println((User)SerializeUtils.deSerialize(bytes));
+    }
+
+    @Test
+    public void deserialize(){
+        User user = new User("jedisSerialize", "宝宝", "xiaobao");
         byte[] bytes = jedis.get(user.getId().getBytes());
         System.out.println((User)SerializeUtils.deSerialize(bytes));
     }
