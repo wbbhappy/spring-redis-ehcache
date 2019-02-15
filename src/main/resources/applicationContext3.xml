@@ -13,11 +13,10 @@
             http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.web.dao" />
-    <!--<bean id="userDao" class="com.web.dao.impl.IUserDaoImpl" />-->
     <context:property-placeholder location="classpath:redis.properties" />
     <!-- 配置 JedisPoolConfig 实例 -->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="300" />
+        <property name="maxIdle" value="${redis.maxIdle}" />
         <property name="testOnBorrow" value="true" />
     </bean>
     <!-- 配置JedisConnectionFactory -->

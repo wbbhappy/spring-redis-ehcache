@@ -13,10 +13,10 @@ import java.util.List;
  * @author http://blog.csdn.net/java2000_wl
  * @version <b>1.0</b>
  */
-//@ContextConfiguration(locations = {"classpath*:applicationContext3.xml"})
+//@ContextConfiguration(locations = {"classpath*:applicationContext2.xml"})
 public class RedisInterfaceTest {
 
-    ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext3.xml");
+    ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext2.xml");
     IUserDaoImpl userDao = ac.getBean(IUserDaoImpl.class);
     /**
      * 新增

@@ -10,12 +10,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author http://blog.csdn.net/java2000_wl
  * @version <b>1.0</b>
  */
-//@ContextConfiguration(locations = {"classpath*:applicationContext4.xml"})
+//@ContextConfiguration(locations = {"classpath*:applicationContext3.xml"})
 public class RedisInterfaceTest2 {
 
     //@Autowired
     //IUserDao2 userDao2;
-    ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext4.xml");
+    ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext3.xml");
     IUserDaoImpl2 userDao2 = ac.getBean(IUserDaoImpl2.class);
 
     @Test

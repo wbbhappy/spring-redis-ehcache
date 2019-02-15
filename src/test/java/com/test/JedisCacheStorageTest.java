@@ -1,32 +1,43 @@
 package com.test;
 
-import com.web.jedis.impl.RedisCacheStorageImpl;
+import com.web.entity.Users;
+import com.web.jedis.RedisCacheStorage;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = {"classpath*:spring-redis2.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath*:spring-redis2.xml"})
 public class JedisCacheStorageTest {
-    //@Autowired
-    //private RedisCacheStorage<String,Users> redisCacheStorage;
-    //private RedisCacheStorage<String,String> redisCacheStorage;
+    @Autowired
+    private RedisCacheStorage<String,Users> redisCacheStorage;
 
-    //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext2.xml,spring-redis2.xml");
-    ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
-    RedisCacheStorageImpl redisCacheStorage = ac.getBean(RedisCacheStorageImpl.class);
+    //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
+    //RedisCacheStorageImpl redisCacheStorage = ac.getBean(RedisCacheStorageImpl.class);
 
     @Test
-    public void testSetGet() throws Exception {
-        System.out.print("开始执行测试");
-        /*Users users = new Users();
+    public void testSet() throws Exception {
+        System.out.println("开始执行set方法");
+        Users users = new Users();
         users.setName("admin7");
         users.setPassword("admin8");
-        System.out.print("users:" + users);
-        redisCacheStorage.set("Akey7",users);
-        Users user2 = redisCacheStorage.get("Akey7",new Users());
-        System.out.print("=======" + user2.getName() + "=====" + user2.getPassword());*/
+        System.out.println("users:" + users);
+        redisCacheStorage.set("jedis",users);
+    }
 
-        redisCacheStorage.set("Akey7","wbbhappy",3);
+    @Test
+    public void testGet() throws Exception {
+        System.out.println("开始执行get方法");
+        Users user2 = new Users();
+        redisCacheStorage.get("jedis",user2);
+    }
+
+    @Test
+    public void testRemove() throws Exception {
+        System.out.println("开始执行remove方法");
+        redisCacheStorage.remove("jedis");
+        System.out.println("从redis成功删除数据！");
     }
 }

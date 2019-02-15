@@ -16,15 +16,17 @@
 		http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
     <context:component-scan base-package="com.web.jedis" />
-    <context:property-placeholder location="classpath:redis.properties"/>
-    <bean id="jedisPool" class="redis.clients.jedis.JedisPoolConfig" >
-        <property name="maxIdle" value="${redis.maxIdle}" />
+    <!-- jedisPool配置信息 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="1000"/>            <!-- 控制一个pool可分配多少个jedis实例 -->
+        <property name="maxIdle" value="200" />             <!-- 控制一个pool最多有多少个状态为idle(空闲)的jedis实例 -->
+        <property name="maxWaitMillis" value="2000" />     <!-- 表示当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException -->
+        <property name="testOnBorrow" value="true" />      <!-- 在borrow一个jedis实例时，是否提前进行validate操作；如果为true，则得到的jedis实例均是可用的 -->
     </bean>
-    <!--<bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-     p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="jedisPool" >
-    </bean>-->
-    <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:host-name="127.0.0.1" p:port="6379" p:pool-config-ref="jedisPool"  >
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="destroy">
+        <constructor-arg ref="jedisPoolConfig" />
+        <constructor-arg value="127.0.0.1" />
+        <constructor-arg type="int" value="6379" />
     </bean>
     <!-- 配置RedisTemplate -->
     <!--<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">

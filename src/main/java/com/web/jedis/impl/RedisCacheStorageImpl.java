@@ -40,10 +40,13 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         try {
             //获取jedis对象
             jedis = jedisUtil.getResource();
+            System.out.println("成功从pool获取jedis实例！");
             //使用对象转换为Json格式插入redis
             JSONObject json = JSONObject.fromObject(value); //将java对象转换为json对象
             String jsonValue = json.toString();             //将json对象转换为json字符串
+            System.out.println("键值对值：" + jsonValue);
             jedis.setex(key,exp,jsonValue);
+            System.out.println("jedis成功插入数据到redis！");
         }catch (Exception e){
             //释放jedis对象
             jedisUtil.brokenResource(jedis);
@@ -71,6 +74,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
             }
             JSONObject obj = new JSONObject().fromObject(jsonValue);//将json字符串转换为json对象
             v = (V)JSONObject.toBean(obj,object.getClass());        //将建json对象转换为你想要的java对象
+            System.out.println("从redis取到的值为：" + v);
             return v;
         }catch (Exception e){
             //释放jedis对象
