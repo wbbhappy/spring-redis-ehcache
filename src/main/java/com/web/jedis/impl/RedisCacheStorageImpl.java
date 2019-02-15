@@ -1,6 +1,6 @@
-package com.web.service.impl;
+package com.web.jedis.impl;
 
-import com.web.service.RedisCacheStorage;
+import com.web.jedis.RedisCacheStorage;
 import com.web.util.JedisUtil;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
      * 获取Jedis相关操作
      */
     @Autowired
-    private JedisUtil redisUtil;
+    private JedisUtil jedisUtil;
 
     public boolean set(String key, V value) {
         return set(key,value,EXPRIE_TIME);
@@ -40,19 +40,19 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         }
         try {
             //获取jedis对象
-            jedis = redisUtil.getResource();
+            jedis = jedisUtil.getResource();
             //使用对象转换为Json格式插入redis
             JSONObject json = JSONObject.fromObject(value); //将java对象转换为json对象
             String jsonValue = json.toString();             //将json对象转换为json字符串
             jedis.setex(key,exp,jsonValue);
         }catch (Exception e){
             //释放jedis对象
-            redisUtil.brokenResource(jedis);
+            jedisUtil.brokenResource(jedis);
             log.info("client can't connect server");
             return  false;
         }finally {
             //返还连接池
-            redisUtil.returnResource(jedis);
+            jedisUtil.returnResource(jedis);
             return true;
         }
     }
@@ -65,7 +65,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
             return  null;
         }
         try{
-            jedis = redisUtil.getResource();    //获取连接
+            jedis = jedisUtil.getResource();    //获取连接
             String jsonValue = jedis.get(key);   //从redis得到值,得到的是json字符串，因为我们之前插入的时候是使用的json字符串
             if(StringUtils.isEmpty(jsonValue)){
                 return  null;
@@ -76,20 +76,20 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         }catch (Exception e){
             //释放jedis对象
             if(jedis != null){
-                redisUtil.brokenResource(jedis);
+                jedisUtil.brokenResource(jedis);
             }
             log.info("client can't get value");
             return  null;
         }finally {
             //返还连接池
-            redisUtil.returnResource(jedis);
+            jedisUtil.returnResource(jedis);
         }
     }
 
     public boolean remove(String key) {
         Jedis jedis = null;
         try{
-            jedis = redisUtil.getResource();
+            jedis = jedisUtil.getResource();
             if(StringUtils.isEmpty(key)){
                 log.info("redis取值，key为空");
                 return  false;
@@ -98,13 +98,13 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         }catch (Exception e) {
             //释放jedis对象
             if(jedis != null){
-                redisUtil.brokenResource(jedis);
+                jedisUtil.brokenResource(jedis);
             }
             log.info("  del fail from redis");
             return false;
         }finally{
             //返还连接池
-            redisUtil.returnResource(jedis);
+            jedisUtil.returnResource(jedis);
             return true;
         }
     }
@@ -123,7 +123,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
             return false;
         }
         try {
-            jedis = redisUtil.getResource();
+            jedis = jedisUtil.getResource();
             //执行插入哈希
             jedis.hset(jCacheKey, key, jsonValue);
         } catch (Exception e) {
@@ -131,13 +131,13 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
             isSucess = false;
             if(null != jedis){
                 //释放jedis 对象
-                redisUtil.brokenResource(jedis);
+                jedisUtil.brokenResource(jedis);
             }
             return false;
         }finally{
             if (isSucess) {
                 //返还连接池
-                redisUtil.returnResource(jedis);
+                jedisUtil.returnResource(jedis);
             }
             return true;
         }
@@ -154,7 +154,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         }
         try {
             //获取客户端对象
-            jedis = redisUtil.getResource();
+            jedis = jedisUtil.getResource();
             //执行查询
             String jsonValue = jedis.hget(jCacheKey, key);
             //判断值是否非空
@@ -165,12 +165,12 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
                 v = (V)JSONObject.toBean(obj,object.getClass());        //将建json对象转换为java对象
             }
             //返还连接池
-            redisUtil.returnResource(jedis);
+            jedisUtil.returnResource(jedis);
         } catch (JedisException e) {
             log.info("client can't connect server");
             if(null != jedis){
                 //redisUtil 对象
-                redisUtil.brokenResource(jedis);
+                jedisUtil.brokenResource(jedis);
             }
         }
         return v;
@@ -188,7 +188,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
         Map<String,V> result = null;
         V v = null;
         try {
-            jedis = redisUtil.getResource();
+            jedis = jedisUtil.getResource();
             //获取列表集合 因为插入redis的时候是jsonString格式，所以取出来key是String value也是String
             Map<String,String> map = jedis.hgetAll(jCacheKey);
             if(null !=map){
@@ -205,7 +205,7 @@ public class RedisCacheStorageImpl<V> implements RedisCacheStorage<String,V> {
             log.info("client can't connect server");
             if(null != jedis){
                 //释放jedis 对象
-                redisUtil.brokenResource(jedis);
+                jedisUtil.brokenResource(jedis);
             }
         }
         return result;

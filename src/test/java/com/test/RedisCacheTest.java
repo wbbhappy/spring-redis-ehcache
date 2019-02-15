@@ -1,6 +1,6 @@
 package com.test;
 
-import com.web.dao.impl.UserDaoImpl;
+import com.web.service.UserDao;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,7 +11,7 @@ public class RedisCacheTest {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis.xml");
 		System.out.println("ApplicationContext" + ac);
 
-		UserDaoImpl userDao = ac.getBean(UserDaoImpl.class);
+		UserDao userDao = ac.getBean(UserDao.class);
 		System.out.println("userDao" + userDao);
 
 		System.out.println("第1次");

@@ -1,4 +1,4 @@
-package com.web.service;
+package com.web.jedis;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ public interface RedisCacheStorage<K,V> {
      * @param value
      * @return
      */
-    boolean set(K key,V value);
+    boolean set(K key, V value);
     /**
      * 在redis数据库中插入 key  和value 并且设置过期时间
      * @param key
@@ -23,7 +23,7 @@ public interface RedisCacheStorage<K,V> {
      * @param key
      * @return
      */
-    V get(K key,Object object);
+    V get(K key, Object object);
     /**
      * 删除redis库中的数据
      * @param key
@@ -37,18 +37,18 @@ public interface RedisCacheStorage<K,V> {
      * @param value
      * @return
      */
-    boolean hset(String cacheKey,K key,V value);
+    boolean hset(String cacheKey, K key, V value);
     /**
      * 获取哈希表数据类型的值
      * @param cacheKey
      * @param key
      * @return
      */
-    V hget(String cacheKey,K key,Object object);
+    V hget(String cacheKey, K key, Object object);
     /**
      * 获取哈希类型的数据
      * @param cacheKey
      * @return
      */
-    Map<K,V> hget(String cacheKey,Object object);
+    Map<K,V> hget(String cacheKey, Object object);
 }

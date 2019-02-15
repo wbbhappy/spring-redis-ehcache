@@ -1,21 +1,20 @@
 package com.test;
 
-import com.web.service.RedisCacheStorage;
+import com.web.jedis.impl.RedisCacheStorageImpl;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations = {"classpath*:spring-redis2.xml"})
 public class RedisCacheStorageTest {
-    @Autowired
+    //@Autowired
     //private RedisCacheStorage<String,Users> redisCacheStorage;
-    private RedisCacheStorage<String,String> redisCacheStorage;
+    //private RedisCacheStorage<String,String> redisCacheStorage;
 
     //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext2.xml,spring-redis2.xml");
     ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
-    //RedisCacheStorageImpl redisCacheStorage = ac.getBean(RedisCacheStorageImpl.class);
+    RedisCacheStorageImpl redisCacheStorage = ac.getBean(RedisCacheStorageImpl.class);
 
     @Test
     public void testSetGet() throws Exception {

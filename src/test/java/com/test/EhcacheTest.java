@@ -1,9 +1,9 @@
 package com.test;
 
+import com.web.service.UserDao;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.web.dao.UserDao;
 
 public class EhcacheTest {
 	@Test
