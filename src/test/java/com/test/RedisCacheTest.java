@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class RedisCacheTest {
 	@Test
 	public void testRedisCache(){
-		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis.xml");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
 		System.out.println("ApplicationContext" + ac);
 
 		UserDao userDao = ac.getBean(UserDao.class);

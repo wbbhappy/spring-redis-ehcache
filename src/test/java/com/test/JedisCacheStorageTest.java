@@ -9,12 +9,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-redis2.xml"})
+@ContextConfiguration(locations = {"classpath*:spring-redis.xml"})
 public class JedisCacheStorageTest {
     @Autowired
     private RedisCacheStorage<String,Users> redisCacheStorage;
 
-    //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis2.xml");
+    //ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring-redis.xml");
     //RedisCacheStorageImpl redisCacheStorage = ac.getBean(RedisCacheStorageImpl.class);
 
     @Test
