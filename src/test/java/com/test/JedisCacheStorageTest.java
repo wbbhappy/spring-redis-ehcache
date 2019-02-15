@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations = {"classpath*:spring-redis2.xml"})
-public class RedisCacheStorageTest {
+public class JedisCacheStorageTest {
     //@Autowired
     //private RedisCacheStorage<String,Users> redisCacheStorage;
     //private RedisCacheStorage<String,String> redisCacheStorage;

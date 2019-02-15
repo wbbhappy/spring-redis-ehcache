@@ -1,6 +1,6 @@
 package com.test;
 
-import com.web.util.RedisUtils;
+import com.web.util.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"classpath:spring-redis3.xml"})
 public class RedisTest{
     @Autowired(required=false)
-    private RedisUtils redisUtils;
+    private RedisUtil redisUtils;
 
     /*@Autowired(required=false)
     private RedisUtil redisUtil;*/

@@ -53,7 +53,7 @@
     <cache:annotation-driven cache-manager="redisCacheManager"/>
 
     <!--redis工具类 （也可以通过注解的方式注入） -->
-    <bean id="redisUtils" class="com.web.util.RedisUtils">
+    <bean id="redisUtil" class="com.web.util.RedisUtil">
         <property name="redisTemplate" ref="redisTemplate" />
     </bean>
 </beans>
